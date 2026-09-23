@@ -1,0 +1,45 @@
+# Quant Research Kit - 顶层依赖
+#
+# 安装：  setup/install.bat   或   bash setup/install.sh
+# 完整锁定版本见 requirements-lock.txt（含间接依赖，可用于精确复现）
+#
+# ── 已知版本坑 ──────────────────────────────────────────────
+# vnpy_riskmanager 必须锁 1.1.0。
+#   2.0.0 只发布了 cp313 的 wheel，在 Python 3.11 上会回退到源码编译，
+#   没有 MSVC 构建工具时编译失败，并且会**回滚整个安装事务**，
+#   把前面装好的包一起卸掉，报错信息还指向别的包，极易误判。
+# ───────────────────────────────────────────────────────────
+
+# ---- 交易 / 回测框架 ----
+vnpy==4.4.0
+vnpy_ctastrategy
+vnpy_ctabacktester
+vnpy_sqlite
+vnpy_datamanager
+vnpy_chartwizard
+vnpy_portfoliostrategy
+vnpy_algotrading
+vnpy_riskmanager==1.1.0
+
+# ---- 因子研究 ----
+pyqlib==0.9.7
+lightgbm
+
+# ---- 数据源 ----
+akshare
+pyarrow
+
+# ---- 波动率建模 / 风险计量 ----
+arch
+
+# ---- 通用科学计算 ----
+pandas
+numpy
+scipy
+scikit-learn
+statsmodels
+
+# ---- 可视化 / 交互 ----
+matplotlib
+plotly
+jupyterlab

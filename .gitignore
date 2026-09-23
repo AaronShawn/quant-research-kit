@@ -1,0 +1,40 @@
+# ---- 数据缓存：体积大，且可由脚本重新生成，不入库 ----
+data/
+qlib_data/
+qlib_data_*/
+mlruns/
+
+# ---- 运行产物 ----
+logs/
+*.log
+*.png
+*.csv
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.Python
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 凭据：绝对不要提交 ----
+.env
+.env.*
+*.key
+*.pem
+*token*
+*secret*
+credentials.json
