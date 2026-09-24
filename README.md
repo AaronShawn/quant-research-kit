@@ -1,7 +1,7 @@
 # Quant Research Kit
 
 **面向 AI Agent 的量化研究工作台** —— 一套可复制的 A股 / 港股 / 美股 / 加密研究环境，
-外加三个可以直接挂载到 AI Agent 的技能包。
+外加四个可以直接挂载到 AI Agent 的技能包。
 
 > 目标不是再写一个回测框架，而是把「环境搭建 + 数据正确性 + 统计正确性 + Agent 行为规范」
 > 这四件容易出错的事一次性固定下来。
@@ -22,15 +22,20 @@
 
 ---
 
-## 三个技能
+## 四个技能
 
 技能放在 `skills/` 目录，每个都是独立的 `SKILL.md`，可直接放进 Agent 的技能目录。
+**四个技能不依赖彼此，可以单独挂载其中任意一个。**
 
 | 技能 | 作用 | 什么时候用 |
 |---|---|---|
+| **`quant-env-setup`** | 从零搭建环境：依赖清单与版本锁定理由、跨平台安装、验证、五个安装陷阱 | 新机器复现、装不上、依赖冲突 |
+| **`quant-env-inventory`** | 环境盘点方法论 + 清单模板 | 不知道某个库装在哪 / 数据源能不能通 |
 | **`quant-full-analysis`** | 九层分析编排：数据审计 → 画像 → 时序建模 → 风险计量 → 事件分析 → 预测 → 归因 → 外部信息 → 综合结论 | 用户说「量化分析 XXX」 |
 | **`qlib-ashare-factor-research`** | A股股票池因子研究流水线（Alpha158 + LightGBM + TopkDropout），含 IC 诊断与多池对比 | 研究因子、跑股票池回测 |
-| **`quant-env-inventory`** | 环境盘点方法论 + 清单模板 | 不知道某个库装在哪 / 数据源能不能通 |
+
+> 环境相关的两个技能（`setup` / `inventory`）是**互补**的：
+> 前者管「怎么从零装出来」，后者管「这台机器上现在装在哪、能不能通」。
 
 ### 核心设计：一切自适应
 
@@ -108,9 +113,10 @@ quant-research-kit/
 ├── README.md
 ├── LICENSE
 ├── skills/                         AI Agent 技能（可直接挂载）
+│   ├── quant-env-setup/            环境搭建（依赖清单 + 安装陷阱）
+│   ├── quant-env-inventory/        环境盘点方法论
 │   ├── quant-full-analysis/        九层分析编排
-│   ├── qlib-ashare-factor-research/ A股因子研究流水线
-│   └── quant-env-inventory/        环境盘点方法论
+│   └── qlib-ashare-factor-research/ A股因子研究流水线
 ├── scripts/                        可复用脚本
 │   ├── quantdata.py                数据层公共模块（路径无关）
 │   ├── 00_check_env.py             环境自检
